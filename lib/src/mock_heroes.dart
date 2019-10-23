@@ -1,4 +1,4 @@
-import 'package:angular_app/src/here.dart';
+import 'package:angular_app/src/hero.dart';
 
 final mockHeroes = <Hero>[
   Hero(2, 'sad'),
