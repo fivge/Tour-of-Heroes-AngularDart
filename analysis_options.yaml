@@ -1,6 +1,7 @@
 analyzer:
   exclude: [build/**]
   errors:
+    # https://angulardart.dev/tutorial/toh-pt5#configure-routes
     uri_has_not_been_generated: ignore
   plugins:
     - angular
