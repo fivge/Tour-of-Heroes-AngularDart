@@ -27,8 +27,7 @@ class HeroListComponent implements OnInit {
   //   _heroService.getAll().then((heroes) => this.heroes = heroes);
   // }
 
-  Future<void> _getHeroes() async =>
-      (heroes = await _heroService.getAllSlowly());
+  Future<void> _getHeroes() async => (heroes = await _heroService.getAll());
 
   void onSelect(Hero hero) => selected = hero;
 
@@ -37,4 +36,19 @@ class HeroListComponent implements OnInit {
 
   Future<NavigationResult> gotoDetail() =>
       _router.navigate(_heroUrl(selected.id));
+
+  Future<void> add(String name) async {
+    name = name.trim();
+    if (name.isEmpty) {
+      return null;
+    }
+    heroes.add(await _heroService.create(name)); // FIXME: 此处逻辑待优化
+    selected = null;
+  }
+
+  Future<void> delete(Hero hero) async {
+    await _heroService.delete(hero.id);
+    heroes.remove(hero); // FIXME: 此处逻辑待优化
+    if (selected == hero) selected = null;
+  }
 }
